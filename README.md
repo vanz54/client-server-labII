@@ -69,6 +69,5 @@ Schemi che ho utilizzato come riferimento oltre alla descrizione dettagliata del
 ![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/8d9114eb-1190-41e9-9bb2-0294d01ee46c)
 ![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/762038dd-fce2-4352-9df3-55441e8a69d1)
 
-Descrizione del progetto dettagliata del professore
-[instructions.md](https://github.com/vanz54/Progetto-LAB2/files/11578453/instructions.md)
+Descrizione del progetto dettagliata del professore -> [istruzioni.md](https://github.com/vanz54/Progetto-LAB2/files/11578472/istruzioni.md)
 
