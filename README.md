@@ -43,6 +43,7 @@ Il codice in archivio può risultare leggermente dispersivo essendoci anche simi
 <li>creazione entry
 <li>aggiungi
 <li>conta
+
  <li>sezione lettori
     <ul>
       <li>struct</li>
@@ -66,6 +67,8 @@ Il codice in archivio può risultare leggermente dispersivo essendoci anche simi
 ---------------------------------------------------------------------
 Schemi che ho utilizzato come riferimento oltre alla descrizione dettagliata del progetto del professore.
 ![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/8d9114eb-1190-41e9-9bb2-0294d01ee46c)
+![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/762038dd-fce2-4352-9df3-55441e8a69d1)
+
 <details>
 <summary>Descrizione del progetto dettagliata del professore</summary>
 
