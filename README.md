@@ -35,7 +35,9 @@ il capo ha 2 buffer importanti: un buffer su cui mette le sequenze di caratteri 
 i workers invece estraggono i token dal buffer ciclico concorrente, se vedono la stringa "3X1T", unlockano e terminano, altrimenti subentra una seconda concorrenza (tra lettori e scrittori sulla hash table) gestita con le rispettive funzioni di lock e unlock (read o write [presenti in rwunfair.c]) che utilizzano condition variables e mutex per rendere safe le rispettive funzioni sulla hash table (conta o aggiungi), in modo che non succeda che un lettore legga un valore vecchio dalla hash table.
 
 Una volta premuto ctr+C per la terminazione pulita del programma, il server chiuderà le pipe, ciò farà riempire il buffer di valori di terminazione dai capi, che si chiuderanno, di conseguenza si chiuderà il thread gestore e infine il main aspetterà la chiusura di tutti i workers prima di deallocare i buffer e chiudere in lettura le pipes.
-Per quanto riguarda la hash table, la lista che aiuta a tenerne traccia è composta nel medesimo modo proposto dal professore:
+Per quanto riguarda la hash table, ho la lista che aiuta a tenerne traccia ed è fondamentale per la successiva deallocazione; la lista è composta nel medesimo modo proposto dal professore nelle istruzioni:
+![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/40c6b553-e0e8-41e7-977a-931f4e588a45)
+Ossia il puntatore alla testa della lista viene continuamente aggiornato ad ogni ENTRY aggiunta, che ha come 'chiave' la stringa tokenizzata e come 'data' una coppia valore numerico e puntatore alla prossima ENTRY, fondamentalmente è la funzione aggiungi() che mi compone la hash table e di conseguenza la lista. Prima di terminare il programma dealloco la hash table ricorsivamente grazie alla lista, parte dal fondo della lista e man mano che la percorre 'all'indietro' elimina gli elementi dalla hash table. Se invece volessi resettare la lista (SIGUSR1) faccio lo stesso procedimento della terminazione, però resetto anche il puntatore alla testa della lista, in modo da poter ripartire con una hash table nuova.
 
 
 
