@@ -65,8 +65,7 @@ Il codice in archivio può risultare leggermente dispersivo essendoci anche simi
 
 ---------------------------------------------------------------------
 Schemi che ho utilizzato come riferimento oltre alla descrizione dettagliata del progetto del professore.
-![image](https://github.com/vanz54/Progetto-Laboratorio-II/assets/110528455/154c3405-7bb0-4a39-b3fc-780af30b4137)
-![image](https://github.com/vanz54/Progetto-Laboratorio-II/assets/110528455/8def332f-0a37-464a-81bd-bbb4ec6a517b)
+![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/8d9114eb-1190-41e9-9bb2-0294d01ee46c)
 <details>
 <summary>Descrizione del progetto dettagliata del professore</summary>
 
