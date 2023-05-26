@@ -1,0 +1,82 @@
+#! /usr/bin/env python3
+import socket, struct, threading
+
+# Autore -> Tommaso Vanz
+
+def recv_all(conn,n):
+  # Funzione mostrata a lezione, riceve esattamente n byte dal socket conn e li restituisce
+  # il tipo restituto è "bytes": una sequenza immutabile di valori 0-255
+  # Questa funzione è analoga alla readn che abbiamo visto nel C
+  chunks = b''
+  bytes_recd = 0
+  while bytes_recd < n:
+    chunk = conn.recv(min(n - bytes_recd, 2048))
+    if len(chunk) == 0:
+      return 0
+    chunks += chunk
+    bytes_recd = bytes_recd + len(chunk)
+  return chunks      
+
+def funzione_client2(nomefile):
+    # Apre il file da cui deve leggere il thread in modalità lettura
+    with open(nomefile, 'r') as file:
+        # Crea una connessione socket
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Specifica l'indirizzo IP e la porta (matricola 600897) del server a cui connettersi
+        server_address = ('localhost', 50897)
+
+        # Connessione al server
+        client_socket.connect(server_address)
+        # Mi identifico al server come client2
+        client_socket.sendall(("client_tipo2").encode())
+        lines = file.readlines() # Legge tutte le linee del file
+        # Invia le linee lette dal file al server
+        for line in lines:
+            stripped_line = line.strip()
+            # Invia la lunghezza e la relativa sequenza di byte al server
+            if len(line)>2048:
+              print("[CLIENT2] Lunghezza sequenza troppo grande\n")
+              client_socket.close()
+              exit(1)
+            elif stripped_line:
+              client_socket.sendall(struct.pack('!i',len(line)))
+              client_socket.sendall(line.encode())
+            else:
+              # print("[CLIENT2] Linea vuota, la skippo")
+              continue
+        # Segnala che non ci sono altre sequenze inviando una sequenza lunga 0 
+        # (che non va scritta dal server)
+        client_socket.send(b'\x00\x00\x00\x00')
+
+        # Riceve dal server il numero di sequenze inviate
+        length_byte = client_socket.recv(4)
+        length  = struct.unpack('!i',length_byte[:4])[0]
+        print(f"[CLIENT2] Totale sequenze ricevute dal server -> {length}")
+        # Chiude la connessione
+        client_socket.close()
+            
+
+if __name__ == '__main__':
+    import sys
+
+    # Controlla che sia stati passato almeno un argomento come file da dare al thread
+    if len(sys.argv) < 2:
+        print("Uso: python3 client2.py <filename1> [<filename2> ...]")
+        sys.exit(1)
+
+    # Ottiene i nomi dei file dalla linea di comando
+    fileargs = sys.argv[1:]
+
+    # Crea un thread per ogni filenche ha ricevuto da linea di comando e avvia l'esecuzione
+    threads = []
+    for nomefile in fileargs:
+        thread = threading.Thread(target=funzione_client2, args=(nomefile,))
+        print(f"[CLIENT2] Avviamento thread sul {nomefile}")
+        thread.start()
+        threads.append(thread)
+
+    # Attende il completamento di tutti i thread
+    for thread in threads:
+        thread.join()
+
+    print("<[CLIENT2 COMPLETATO]>\n");
