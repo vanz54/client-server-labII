@@ -35,9 +35,8 @@ def funzione_client2(nomefile):
             stripped_line = line.strip()
             # Invia la lunghezza e la relativa sequenza di byte al server
             if len(line)>2048:
-              print("[CLIENT2] Lunghezza sequenza troppo grande\n")
-              client_socket.close()
-              exit(1)
+              # print("[CLIENT2] Lunghezza sequenza troppo grande")
+              continue
             elif stripped_line:
               client_socket.sendall(struct.pack('!i',len(line)))
               client_socket.sendall(line.encode())
