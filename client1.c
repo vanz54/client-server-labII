@@ -65,6 +65,10 @@ int main(int argc, char *argv[]) {
         //printf("[CLIENT1] Linea vuota, la skippo\n");
         continue;
     }
+    if (strlen(linea) > 2048) {
+      // printf("[CLIENT1] Lunghezza sequenza troppo grande\n");
+      continue;
+    }
     // Creazione socket
     int client_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (client_socket == -1)
