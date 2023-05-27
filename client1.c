@@ -12,7 +12,7 @@
 // Costanti utilizzate in client1
 #define QUI __LINE__, __FILE__
 #define HOST "127.0.0.1"
-#define PORT 50897 // Matricola 600897 - Tommaso Vanz
+#define PORT 50897 
 #define Max_sequence_length 2048
 
 // Funzione di terminazione
