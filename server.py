@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+chmod +x server.py
 import socket, sys, argparse, subprocess, time, signal, os, errno, time, struct, logging
 from concurrent.futures import ThreadPoolExecutor
 
