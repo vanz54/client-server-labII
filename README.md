@@ -36,10 +36,7 @@ i workers invece estraggono i token dal buffer ciclico concorrente, se vedono la
 
 Una volta premuto ctr+C per la terminazione pulita del programma, il server chiuderà le pipe, ciò farà riempire il buffer di valori di terminazione dai capi, che si chiuderanno, di conseguenza si chiuderà il thread gestore e infine il main aspetterà la chiusura di tutti i workers prima di deallocare i buffer e chiudere in lettura le pipes.
 
-Per quanto riguarda la hash table, ho la lista che aiuta a tenerne traccia ed è fondamentale per la successiva deallocazione; la lista è composta nel medesimo modo proposto dal professore nelle istruzioni:
-![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/40c6b553-e0e8-41e7-977a-931f4e588a45)
-
-Ossia il puntatore alla testa della lista viene continuamente aggiornato ad ogni ENTRY aggiunta, che ha come 'chiave' la stringa tokenizzata e come 'data' una coppia valore numerico e puntatore alla prossima ENTRY, fondamentalmente è la funzione aggiungi() che mi compone la hash table e di conseguenza la lista. Prima di terminare il programma dealloco la hash table ricorsivamente grazie alla lista, la funzione che la distrugge parte ricorsivamente dal fondo della lista e man mano che la percorre 'all'indietro' elimina gli elementi dalla hash table. Se invece volessi resettare la lista (SIGUSR1) faccio lo stesso procedimento della terminazione, però resetto anche il puntatore alla testa della lista, in modo da poter ripartire con una hash table nuova.
+Il puntatore alla testa della lista viene continuamente aggiornato ad ogni ENTRY aggiunta, che ha come 'chiave' la stringa tokenizzata e come 'data' una coppia valore numerico e puntatore alla prossima ENTRY, fondamentalmente è la funzione aggiungi() che mi compone la hash table e di conseguenza la lista. Prima di terminare il programma dealloco la hash table ricorsivamente grazie alla lista, la funzione che la distrugge parte ricorsivamente dal fondo della lista e man mano che la percorre 'all'indietro' elimina gli elementi dalla hash table. Se invece volessi resettare la lista (SIGUSR1) faccio lo stesso procedimento della terminazione, però resetto anche il puntatore alla testa della lista, in modo da poter ripartire con una hash table nuova.
 
 
 
@@ -70,10 +67,4 @@ Il codice in archivio può risultare leggermente dispersivo essendo anche il cod
       <li>main</li>
  </li>
 
----------------------------------------------------------------------
-Schemi che ho utilizzato come riferimento oltre alla descrizione dettagliata del progetto del professore.
-![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/8d9114eb-1190-41e9-9bb2-0294d01ee46c)
-![image](https://github.com/vanz54/Progetto-LAB2/assets/110528455/762038dd-fce2-4352-9df3-55441e8a69d1)
-
-Descrizione del progetto dettagliata del professore -> [istruzioni.md](https://github.com/vanz54/Progetto-LAB2/files/11578472/istruzioni.md)
 
