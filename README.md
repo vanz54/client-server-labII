@@ -1,5 +1,5 @@
 # Progetto-Laboratorio-II
-### Relazione progetto laboratorio II 22/23 - Tommaso Vanz 600897
+### Relazione progetto laboratorio II 22/23
 ---------------------------------------------------------------------
 ## Introduzione
 Il progetto completo di Laboratorio II è un programma (multi)client-server per la gestione di sequenze di byte lette in dei files dai clients e gestite tramite una tabella hash da un sottoprogramma archivio in comunicazione (e lanciato) col server tramite delle pipe. Ha come componenti principali:
